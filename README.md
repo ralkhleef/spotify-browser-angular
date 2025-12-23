@@ -6,7 +6,9 @@ Angular + Node/Express app that uses the Spotify Web API to browse artists, albu
 Terminal 1:
 cd webserver
 npm install
+npm start
 
 Terminal 2:
 cd client
 npm install
+npm start
