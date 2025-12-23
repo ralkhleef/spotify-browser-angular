@@ -1,0 +1,10 @@
+<div class="progress" *ngIf="percent !== null && percent !== undefined">
+  <div
+    class="progress-bar"
+    role="progressbar"
+    [style.width.%]="normalizedPercent"
+    [style.backgroundColor]="getBarColor()"
+  >
+    <span class="progress-bar-text">{{ displayText }}</span>
+  </div>
+</div>

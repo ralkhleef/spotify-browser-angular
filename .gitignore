@@ -1,5 +1,12 @@
-node_modules
-dist
-build
-.env
+# Angular
+.angular/
+**/.angular/cache/
+
+# Node
+node_modules/
+dist/
+build/
+
+# OS / env
 .DS_Store
+.env

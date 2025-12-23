@@ -1,0 +1,35 @@
+<section class="lyrics">
+  <div class="head">
+    <div>
+      <div class="title">Lyrics</div>
+      <div class="sub app-muted">
+        {{ (player.title$ | async) || 'Nothing playing' }} — {{ (player.subtitle$ | async) || 'Pick a track' }}
+      </div>
+      <div class="sub app-muted" *ngIf="trackId">Selected track id: {{ trackId }}</div>
+    </div>
+    <img class="art" [src]="(player.coverUrl$ | async) || 'assets/unknown.jpg'" alt="Album cover" />
+  </div>
+
+  <div class="panel app-panel strong">
+    <div class="p-title">Paste lyrics here</div>
+    <p class="app-muted p-hint">
+      Spotify's Web API doesn’t provide full lyrics. This page is a simple place to display lyrics when you have them.
+    </p>
+
+    <textarea
+      class="box"
+      rows="12"
+      placeholder="Paste lyrics…"
+      [(ngModel)]="userLyrics"
+    ></textarea>
+
+    <div class="actions">
+      <button class="btn" type="button" (click)="clear()">Clear</button>
+    </div>
+
+    <div class="render" *ngIf="userLyrics">
+      <div class="p-title">Preview</div>
+      <pre class="pre">{{ userLyrics }}</pre>
+    </div>
+  </div>
+</section>

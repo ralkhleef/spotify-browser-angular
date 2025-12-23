@@ -1,0 +1,91 @@
+.track-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.track-table thead th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(233, 245, 238, 0.55);
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+}
+
+.track-table tbody td {
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(233, 245, 238, 0.88);
+  vertical-align: middle;
+}
+
+.track-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.track-table a {
+  color: rgba(233, 245, 238, 0.92);
+  text-decoration: none;
+}
+
+.track-table a:hover {
+  text-decoration: underline;
+}
+
+.playcell {
+  width: 44px;
+  text-align: center;
+}
+
+.playbtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(29, 185, 84, 0.35);
+  background: rgba(29, 185, 84, 0.18);
+  color: rgba(233, 245, 238, 0.92);
+  cursor: pointer;
+}
+
+.playbtn:hover {
+  background: rgba(29, 185, 84, 0.22);
+}
+.playbtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+}
+
+@media (max-width: 720px) {
+  .track-table thead {
+    display: none;
+  }
+
+  .track-table,
+  .track-table tbody,
+  .track-table tr,
+  .track-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .track-table tbody tr {
+    padding: 10px 10px;
+  }
+
+  .track-table tbody td {
+    border: none;
+    padding: 6px 8px;
+  }
+
+  .playcell {
+    width: auto;
+    text-align: left;
+  }
+}

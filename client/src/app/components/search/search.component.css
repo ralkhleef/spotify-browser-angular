@@ -1,0 +1,32 @@
+.search-page {
+  display: grid;
+  gap: 16px;
+}
+
+.search-header {
+  padding: 6px 0;
+}
+
+.title {
+  margin: 0 0 4px 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: rgba(233, 245, 238, 0.95);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(233, 245, 238, 0.70);
+}
+
+.results {
+  display: grid;
+  gap: 16px;
+}
+
+.state {
+  padding: 8px 0;
+  color: rgba(233, 245, 238, 0.70);
+}

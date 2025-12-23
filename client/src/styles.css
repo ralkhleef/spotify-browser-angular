@@ -1,0 +1,83 @@
+/* Global styles */
+
+:root {
+  --bg: #0b0b0f;
+  --bg2: #0b0b0f;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-strong: rgba(255, 255, 255, 0.04);
+  --text: #e9f5ee;
+  --muted: rgba(233, 245, 238, 0.7);
+  --line: rgba(255, 255, 255, 0.08);
+  --line2: rgba(255, 255, 255, 0.05);
+  --accent: #1DB954; /* keep Spotify green for small UI accents */
+  --radius-card: 8px;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #0b0b0f 0%, #0a0a0d 100%);
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
+  /* leave room for the floating mini-player */
+  padding-bottom: 110px;
+}
+
+h1 { font-weight: 900; }
+h2, h3 { font-weight: 700; }
+
+a { color: rgba(233, 245, 238, 0.9); }
+
+/* App buttons (avoid relying on bootstrap color schemes) */
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--panel);
+  color: rgba(233, 245, 238, 0.92);
+  text-decoration: none;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.app-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.app-btn.primary {
+  border-color: rgba(29, 185, 84, 0.5);
+  background: rgba(29, 185, 84, 0.18);
+}
+
+.app-btn.primary:hover {
+  background: rgba(29, 185, 84, 0.22);
+}
+
+/* Reusable helpers */
+.app-panel {
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-card);
+}
+
+.app-panel.strong {
+  background: var(--panel-strong);
+}
+
+.app-muted { color: var(--muted); }
+
+/* Make bootstrap buttons not look oddly spaced */
+.btn { margin: 0; }
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.22);
+}

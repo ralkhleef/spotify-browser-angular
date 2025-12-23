@@ -1,0 +1,36 @@
+<div class="shell">
+  <a class="home-btn" routerLink="/" aria-label="Home" title="Home">
+    <span class="home-icon" aria-hidden="true">&#8962;</span>
+  </a>
+
+  <div class="auth">
+    <button class="login-btn" type="button" (click)="login()" *ngIf="!(isLoggedIn$ | async)">
+      Log in
+    </button>
+
+    <div class="auth-actions" *ngIf="isLoggedIn$ | async">
+      <button class="auth-btn" type="button" (click)="toggleProfile()">Profile</button>
+      <button class="auth-btn ghost" type="button" (click)="logout()">Log out</button>
+
+      <div class="profile-menu" *ngIf="profileOpen">
+        <div class="profile-name">{{ (profile$ | async)?.name || 'User' }}</div>
+        <div class="profile-email">{{ (profile$ | async)?.email }}</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="content">
+    <div class="content-inner">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+
+<!-- fixed bottom player (your existing component) -->
+<app-spotify-player
+  [trackUri]="(playerState.trackUri$ | async) || ''"
+  [coverUrl]="(playerState.coverUrl$ | async) || 'assets/unknown.jpg'"
+  [trackTitle]="(playerState.title$ | async) || 'Nothing playing'"
+  [trackSubtitle]="(playerState.subtitle$ | async) || 'Pick a track'"
+  position="bottom">
+</app-spotify-player>

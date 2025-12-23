@@ -1,0 +1,16 @@
+<!-- Link to the local page (artist or album) -->
+<a
+  *ngIf="resource"
+  class="card"
+  [routerLink]="linkTo()"
+  (click)="$event.stopPropagation()"
+>
+  <div class="img-wrap">
+    <img
+      [src]="resource?.imageURL || 'assets/unknown.jpg'"
+      [alt]="resource?.name || 'cover image'"
+    />
+  </div>
+
+  <div class="name" [title]="resource?.name">{{ resource?.name }}</div>
+</a>

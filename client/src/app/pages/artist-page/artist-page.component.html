@@ -1,0 +1,51 @@
+<section *ngIf="artist; else loading" class="grid">
+
+  <div class="panel">
+    <h1>{{ artist.name }}</h1>
+
+    <img
+      id="artistImg"
+      [src]="artist.imageURL || 'assets/unknown.jpg'"
+      [alt]="artist.name || 'artist image'">
+
+    <p>
+      <a class="app-btn" role="button" target="_blank" [href]="artist.spotifyLink">
+        Open {{ artist.name }} on Spotify
+      </a>
+    </p>
+  </div>
+
+  <!-- Middle column: Popularity, Player, Albums -->
+  <div class="panel">
+    <h3>Popularity</h3>
+    <p class="muted">{{ artist.followers | number }} followers</p>
+
+    <app-thermometer
+      [label]="'Popularity'"
+      [percent]="popularityPercent">
+    </app-thermometer>
+
+    <h3 class="spaced">{{ artist.name }}'s Albums</h3>
+    <app-carousel
+      *ngIf="albums?.length"
+      [resources]="albums"
+      carouselId="artistAlbums">
+    </app-carousel>
+  </div>
+
+  <!-- Right column: Top tracks -->
+  <div class="panel">
+    <h3>{{ artist.name }}'s Top Tracks</h3>
+
+    <app-track-list
+      *ngIf="topTracks?.length"
+      [tracks]="topTracks"
+      [hideArtist]="true"
+      [hideAlbum]="false">
+    </app-track-list>
+  </div>
+</section>
+
+<ng-template #loading>
+  <div class="loading">Loading artist info...</div>
+</ng-template>

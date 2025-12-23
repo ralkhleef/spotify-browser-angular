@@ -1,0 +1,79 @@
+<section class="hero">
+  <div class="hero-left">
+    <div class="kicker">SPOTIFY VINYL</div>
+
+    <h1 class="headline">
+      Record your mood.
+      <br />
+      Search what you want.
+    </h1>
+
+    <p class="subhead">
+      Type a song, album, or artist. Preview results instantly.
+    </p>
+
+    <form class="hero-search" (ngSubmit)="viewAll()" autocomplete="off">
+      <div class="search-pill">
+        <input
+          class="pill-input"
+          name="q"
+          [(ngModel)]="q"
+          (ngModelChange)="onQueryChange()"
+          placeholder="Search artists, albums, tracks..."
+        />
+
+        <select
+          class="pill-type"
+          name="type"
+          [(ngModel)]="type"
+          (change)="onTypeChange()"
+        >
+          <option value="artist">Artist</option>
+          <option value="album">Album</option>
+          <option value="track">Track</option>
+        </select>
+
+        <button class="pill-btn" type="submit">Search</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="hero-right">
+    <img
+      class="vinyl"
+      src="assets/vinyl-disc.png"
+      alt="Vinyl"
+      *ngIf="!vinylError"
+      (error)="onVinylError()"
+    />
+    <div class="vinyl-fallback" *ngIf="vinylError" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="results" *ngIf="q?.trim()?.length">
+  <div class="results-head">
+    <h2 class="results-title">Preview</h2>
+    <button class="viewall" type="button" (click)="viewAll()">View all results</button>
+  </div>
+
+  <div class="state" *ngIf="loading">Searching...</div>
+  <div class="error" *ngIf="!loading && error">{{ error }}</div>
+
+  <app-carousel
+    *ngIf="!loading && !error && (type === 'artist' || type === 'album') && resources.length"
+    [resources]="resources"
+    carouselId="homePreview"
+  ></app-carousel>
+
+  <app-track-list
+    *ngIf="!loading && !error && type === 'track' && tracks.length"
+    [tracks]="tracks"
+    [hideArtist]="false"
+    [hideAlbum]="false"
+  ></app-track-list>
+
+  <div class="state" *ngIf="!loading && !error && !resources.length && !tracks.length">
+    No results.
+  </div>
+</section>

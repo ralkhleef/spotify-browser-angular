@@ -1,0 +1,41 @@
+@if (album) {
+  <section class="grid">
+    <div class="panel">
+      <h1>{{ album?.name }}</h1>
+
+      <img
+        id="albumImg"
+        [src]="album?.imageURL || 'assets/unknown.jpg'"
+        [alt]="album?.name || 'album image'">
+
+      <div class="spaced">
+        <app-thermometer
+          [label]="'Popularity'"
+          [percent]="albumPopularityPercent">
+        </app-thermometer>
+      </div>
+
+      <p class="label"><strong>Artist(s):</strong></p>
+      <p class="muted">
+        <ng-container *ngFor="let a of album?.artists; let last = last">
+          <a [routerLink]="['/artist', a.id]">{{ a.name }}</a><span *ngIf="!last">, </span>
+        </ng-container>
+      </p>
+
+      <p>
+        <a class="app-btn" role="button" target="_blank" [href]="albumExternalUrl()">
+          Open {{ album?.name }} on Spotify
+        </a>
+      </p>
+    </div>
+
+    <div class="panel">
+      <h3>Album Tracks</h3>
+      <app-track-list
+        [tracks]="tracks"
+        [hideArtist]="true"
+        [hideAlbum]="true">
+      </app-track-list>
+    </div>
+  </section>
+}

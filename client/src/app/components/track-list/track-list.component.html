@@ -1,0 +1,47 @@
+<div *ngIf="tracks?.length">
+  <table class="track-table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">Track</th>
+        <th scope="col">Duration</th>
+        <th *ngIf="!hideArtist" scope="col">Primary Artist</th>
+        <th *ngIf="!hideAlbum" scope="col">Album</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let track of tracks; let i = index">
+        <td class="playcell">
+          <button class="playbtn" type="button" title="Play" (click)="play(track)">▶</button>
+        </td>
+        <td>{{ i + 1 }}</td>
+
+        <!-- Track name -> Track page -->
+        <td>
+          <a class="track-link" [routerLink]="['/track', track.id]">{{ track.name }}</a>
+        </td>
+
+        <!-- Duration using model getter -->
+        <td>{{ durationStr(track) }}</td>
+
+        <!-- Primary Artist -->
+        <td *ngIf="!hideArtist">
+          <ng-container *ngIf="primaryArtistLink(track) as link; else noArtist">
+            <a class="sub-link" [routerLink]="link">{{ primaryArtistName(track) }}</a>
+          </ng-container>
+          <ng-template #noArtist>{{ primaryArtistName(track) }}</ng-template>
+        </td>
+
+        <!-- Album -->
+        <td *ngIf="!hideAlbum">
+          <ng-container *ngIf="albumLink(track) as alink; else noAlbum">
+            <a class="sub-link" [routerLink]="alink">{{ albumName(track) }}</a>
+          </ng-container>
+          <ng-template #noAlbum>{{ albumName(track) }}</ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

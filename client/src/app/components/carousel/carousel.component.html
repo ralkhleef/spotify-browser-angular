@@ -1,0 +1,18 @@
+@if (resources?.length) {
+  <div class="rail-shell">
+    <button class="rail-btn left" type="button" (click)="scrollLeft()" aria-label="Scroll left">
+      &lsaquo;
+    </button>
+
+    <div class="rail" #rail>
+      <app-carousel-card
+        *ngFor="let r of resources; trackBy: trackById"
+        [resource]="r">
+      </app-carousel-card>
+    </div>
+
+    <button class="rail-btn right" type="button" (click)="scrollRight()" aria-label="Scroll right">
+      &rsaquo;
+    </button>
+  </div>
+}

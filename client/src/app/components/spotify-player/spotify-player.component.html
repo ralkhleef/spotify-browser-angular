@@ -1,0 +1,71 @@
+<div class="mini-player" aria-label="Mini player">
+  <div class="player-left">
+    <div class="cover-wrap">
+      <img
+        class="cover"
+        [src]="displayCoverUrl"
+        alt="Album cover"
+        (error)="onCoverError()"
+      />
+    </div>
+    <div class="meta">
+      <div class="title" [title]="trackTitle">{{ trackTitle || 'Nothing playing' }}</div>
+      <div class="subtitle" [title]="trackSubtitle">{{ trackSubtitle || 'Pick a track to start' }}</div>
+    </div>
+  </div>
+
+  <div class="player-center">
+    <div class="progress-row">
+      <span class="time">{{ msToStr(positionMs) }}</span>
+      <input
+        type="range"
+        min="0"
+        max="1000"
+        [value]="progressValue"
+        [disabled]="!durationMs"
+        (input)="onScrub($event)" />
+      <span class="time">{{ remainingStr }}</span>
+    </div>
+
+    <div class="controls">
+      <button class="icon" title="Previous" (click)="prevStub()">&#9198;</button>
+
+      <button class="icon play" *ngIf="!isReady" (click)="connectDevice()" title="Connect">
+        &#9203;
+      </button>
+
+      <button
+        class="icon play"
+        *ngIf="isReady"
+        (click)="toggle()"
+        [class.is-active]="isPlaying"
+        [title]="isPlaying ? 'Pause' : 'Play'">
+        <span *ngIf="isPlaying">&#10074;&#10074;</span>
+        <span *ngIf="!isPlaying">&#9654;</span>
+      </button>
+
+      <button class="icon" title="Next" (click)="nextStub()">&#9197;</button>
+    </div>
+  </div>
+
+  <div class="player-right">
+    <div class="volume-wrap">
+      <button class="icon ghost" type="button" title="Volume" aria-label="Volume">
+        &#127911;
+      </button>
+      <input
+        class="volume"
+        type="range"
+        min="0"
+        max="100"
+        [value]="volume * 100"
+        (input)="onVolumeInput($event)"
+        aria-label="Volume"
+      />
+    </div>
+  </div>
+
+  <div class="status" *ngIf="showStatus">
+    {{ status }}
+  </div>
+</div>

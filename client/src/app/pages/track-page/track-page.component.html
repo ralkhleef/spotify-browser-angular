@@ -1,0 +1,41 @@
+@if (track) {
+  <section class="grid">
+    <div class="panel">
+      <h1>{{ track.name }}</h1>
+
+      <p>
+        Track on
+        <a [routerLink]="['/album', track.album?.id]">
+          {{ track.album?.name }}
+        </a>
+      </p>
+
+      <div>
+        @for (a of track.artists; track a.id) {
+          <p>
+            Artist:
+            <a [routerLink]="['/artist', a.id]">{{ a.name }}</a>
+          </p>
+        }
+      </div>
+
+      <p>Duration: {{ track.durationStr }}</p>
+
+      <div class="actions">
+        <a class="app-btn" role="button" target="_blank" [href]="trackExternalUrl()">
+          Open on Spotify
+        </a>
+        <button class="app-btn primary" type="button" (click)="playInMiniPlayer()">
+          Play in mini player
+        </button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <app-thermometer
+        [label]="'Popularity'"
+        [percent]="trackPopularityPercent">
+      </app-thermometer>
+    </div>
+  </section>
+}

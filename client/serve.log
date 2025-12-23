@@ -1,0 +1,3 @@
+- Generating browser application bundles (phase: setup)...
+An unhandled exception occurred: Cannot find module '/Users/local.user/Desktop/a3-spotify-ranyaalkhleef/client/node_modules/acorn/dist/acorn.js'
+See "/private/var/folders/bm/p1m2dtln4z1d8krk0gsdvx4c0000gn/T/ng-fwPfUA/angular-errors.log" for further details.

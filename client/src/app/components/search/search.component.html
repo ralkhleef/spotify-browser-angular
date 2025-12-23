@@ -1,0 +1,36 @@
+<section class="search-page">
+  <header class="search-header">
+    <h1 class="title">Results</h1>
+    <p class="subtitle" *ngIf="searchString; else hint">
+      “{{ searchString }}” · {{ searchCategory }}
+    </p>
+    <ng-template #hint>
+      <p class="subtitle">Start from the home search to see results.</p>
+    </ng-template>
+  </header>
+
+  <div class="results">
+    <!-- Artists & Albums -->
+    <app-carousel
+      *ngIf="(searchCategory === 'artist' || searchCategory === 'album') && resources?.length"
+      [resources]="resources"
+      carouselId="searchResults">
+    </app-carousel>
+
+    <!-- Tracks -->
+    <app-track-list
+      *ngIf="searchCategory === 'track' && tracks?.length"
+      [tracks]="tracks"
+      [hideArtist]="false"
+      [hideAlbum]="false">
+    </app-track-list>
+
+    <div class="state" *ngIf="loading">Searching…</div>
+
+    <div class="state" *ngIf="!loading && error">{{ error }}</div>
+
+    <div class="state" *ngIf="!loading && searchString && !resources.length && !tracks.length">
+      No results found.
+    </div>
+  </div>
+</section>

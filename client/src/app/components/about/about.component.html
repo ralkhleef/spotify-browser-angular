@@ -1,0 +1,16 @@
+<div class="profileCard">
+  <img class="avatar" [src]="profile_pic" alt="Profile picture" />
+
+  <div class="meta">
+    <div class="kicker">Profile</div>
+    <div class="name">{{ name || 'Not logged in' }}</div>
+    <a class="link" target="_blank" [href]="profile_link" *ngIf="profile_link">
+      Open on Spotify
+    </a>
+    <span class="hint" *ngIf="!profile_link">Use Log in in the top right.</span>
+  </div>
+
+  <button class="iconBtn" type="button" (click)="loadAboutMe()" title="Refresh profile">
+    ↻
+  </button>
+</div>
